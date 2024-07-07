@@ -64,3 +64,32 @@ w = np.random.randn(x_train.shape[1],1)
 b = np.random.randn(1)
 p=cost(x_train,y_train,w,b)
 print(p)
+
+def gradient_descent(x_train,y_train,w,b):
+    
+    # Number of training examples
+    m = x_train.shape[0]
+    
+    # Fixed learning rate and number of iterations
+    learning_rate = 1
+    num_iterations = 1000
+    
+    for i in range(num_iterations):
+        # Compute the predicted values
+        y_pred = np.dot(x_train, w) + b
+        
+        # Compute the gradients
+        dw = (1 / m) * np.dot(x_train.T, (y_pred - y_train))
+        db = (1 / m) * np.sum(y_pred - y_train)
+        
+        # Update the weights and bias
+        w -= learning_rate * dw
+        b -= learning_rate * db
+        
+        # Optionally, print the cost every 100 iterations for monitoring
+        if i % 100 == 0:
+            cost = (1 / (2 * m)) * np.sum((y_pred - y_train) ** 2)
+            print(f"Iteration {i}: Cost {cost}")
+            
+    return w,b
+
