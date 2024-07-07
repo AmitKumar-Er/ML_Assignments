@@ -9,14 +9,14 @@ x_train = np.array(data.iloc[:,0:8])
 y_train = np.array(data.iloc[:,8]).reshape(-1,1)
 
 #plotting Y_train with different features
-# feature_names = data.columns[:8]
-# for i in range(x_train.shape[1]):
-#     plt.figure(figsize=(8, 6))
-#     plt.scatter(x_train[:, i], y_train, alpha=0.5)
-#     plt.xlabel(f'Feature {i+1}')
-#     plt.ylabel('Target')
-#     plt.title(f'Feature {i+1} vs Target')
-#     plt.show()
+feature_names = data.columns[:8]
+for i in range(x_train.shape[1]):
+    plt.figure(figsize=(8, 6))
+    plt.scatter(x_train[:, i], y_train, alpha=0.5)
+    plt.xlabel(f'Feature {i+1}')
+    plt.ylabel('Target')
+    plt.title(f'Feature {i+1} vs Target')
+    plt.show()
     
 
 def feature_changing(x_train):
