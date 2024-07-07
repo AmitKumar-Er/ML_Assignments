@@ -43,3 +43,24 @@ def z_score(x_train):
     
      return x_train, x_std, x_mean
 
+
+def cost(x_train,y_train,w,b):
+
+    # Use mean square error as cost function
+    # return cost
+
+    # Number of training examples
+    m = x_train.shape[0]
+    
+    # Compute the predicted values
+    y_pred = np.dot(x_train, w) + b
+    
+    # Compute the Mean Squared Error
+    loss = (1 / (2 * m)) * np.sum((y_pred - y_train) ** 2)
+
+    return loss
+np.random.seed(2147483647)
+w = np.random.randn(x_train.shape[1],1)
+b = np.random.randn(1)
+p=cost(x_train,y_train,w,b)
+print(p)
