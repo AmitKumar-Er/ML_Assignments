@@ -93,3 +93,31 @@ def gradient_descent(x_train,y_train,w,b):
             
     return w,b
 
+x_train = x_train.astype(np.float64)
+x_train,x_std,x_mean = z_score(x_train)
+
+np.random.seed(2147483647)
+w = np.random.randn(x_train.shape[1],1)
+b = np.random.randn(1)
+
+old_cost = 0
+
+while abs(old_cost - cost(x_train,y_train,w,b))>0.00001:
+  old_cost = cost(x_train,y_train,w,b)
+  w,b = gradient_descent(x_train,y_train,w,b)
+
+x_predict = pd.read_excel("C:\\Users\\ak248\\ML_LS_W1\\ML_Assignments\\Linear_Regression_Assignment\\Training data.xlsx").iloc[:,:8].to_numpy()
+x_predict = feature_changing(x_predict)
+x_predict = (x_predict - x_mean)/x_std
+ans = pd.read_excel("C:\\Users\\ak248\\ML_LS_W1\\ML_Assignments\\Linear_Regression_Assignment\\Training data.xlsx").iloc[:,8].to_numpy()
+
+y_predict = np.dot(x_predict,w) + b
+
+accuracy = 0
+for dim in range(len(ans)):
+  if abs(y_predict[dim]-ans[dim])<0.5: # do not change the tolerance as you'll be checked on +- 0.5 error only
+    accuracy += 1
+accuracy = round(accuracy*100/200.0,2)
+ok = 'Congratulations' if accuracy>95 else 'Optimization required'
+print(f"{ok}, your accuracy is {accuracy}%")
+
