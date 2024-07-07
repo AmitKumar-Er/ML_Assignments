@@ -103,10 +103,10 @@ while abs(old_cost - cost(x_train,y_train,w,b))>0.00001:
   old_cost = cost(x_train,y_train,w,b)
   w,b = gradient_descent(x_train,y_train,w,b)
 
-x_predict = pd.read_excel("C:\\Users\\ak248\\ML_LS_W1\\ML_Assignments\\Linear_Regression_Assignment\\Training data.xlsx").iloc[:,:8].to_numpy()
+x_predict = pd.read_excel("C:\\Users\\ak248\\ML_LS_W1\\ML_Assignments\\Linear_Regression_Assignment\\Test data.xlsx").iloc[:,:8].to_numpy()
 x_predict = feature_changing(x_predict)
 x_predict = (x_predict - x_mean)/x_std
-ans = pd.read_excel("C:\\Users\\ak248\\ML_LS_W1\\ML_Assignments\\Linear_Regression_Assignment\\Training data.xlsx").iloc[:,8].to_numpy()
+ans = pd.read_excel("C:\\Users\\ak248\\ML_LS_W1\\ML_Assignments\\Linear_Regression_Assignment\\Test data.xlsx").iloc[:,8].to_numpy()
 
 y_predict = np.dot(x_predict,w) + b
 
