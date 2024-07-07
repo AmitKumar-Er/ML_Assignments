@@ -9,14 +9,14 @@ x_train = np.array(data.iloc[:,0:8])
 y_train = np.array(data.iloc[:,8]).reshape(-1,1)
 
 #plotting Y_train with different features
-feature_names = data.columns[:8]
-for i in range(x_train.shape[1]):
-    plt.figure(figsize=(8, 6))
-    plt.scatter(x_train[:, i], y_train, alpha=0.5)
-    plt.xlabel(f'Feature {i+1}')
-    plt.ylabel('Target')
-    plt.title(f'Feature {i+1} vs Target')
-    plt.show()
+# feature_names = data.columns[:8]
+# for i in range(x_train.shape[1]):
+#     plt.figure(figsize=(8, 6))
+#     plt.scatter(x_train[:, i], y_train, alpha=0.5)
+#     plt.xlabel(f'Feature {i+1}')
+#     plt.ylabel('Target')
+#     plt.title(f'Feature {i+1} vs Target')
+#     plt.show()
     
 
 def feature_changing(x_train):
@@ -59,11 +59,7 @@ def cost(x_train,y_train,w,b):
     loss = (1 / (2 * m)) * np.sum((y_pred - y_train) ** 2)
 
     return loss
-np.random.seed(2147483647)
-w = np.random.randn(x_train.shape[1],1)
-b = np.random.randn(1)
-p=cost(x_train,y_train,w,b)
-print(p)
+
 
 def gradient_descent(x_train,y_train,w,b):
     
@@ -71,8 +67,8 @@ def gradient_descent(x_train,y_train,w,b):
     m = x_train.shape[0]
     
     # Fixed learning rate and number of iterations
-    learning_rate = 1
-    num_iterations = 1000
+    learning_rate = 0.01
+    num_iterations = 10000
     
     for i in range(num_iterations):
         # Compute the predicted values
@@ -93,6 +89,7 @@ def gradient_descent(x_train,y_train,w,b):
             
     return w,b
 
+#accuracy checking
 x_train = x_train.astype(np.float64)
 x_train,x_std,x_mean = z_score(x_train)
 
@@ -120,4 +117,5 @@ for dim in range(len(ans)):
 accuracy = round(accuracy*100/200.0,2)
 ok = 'Congratulations' if accuracy>95 else 'Optimization required'
 print(f"{ok}, your accuracy is {accuracy}%")
+
 
