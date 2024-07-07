@@ -29,7 +29,7 @@ def feature_changing(x_train):
     return x_train
 
 x_train = feature_changing(x_train)
-print(x_train)
+
 
 
 def z_score(x_train):
@@ -43,11 +43,3 @@ def z_score(x_train):
     
      return x_train, x_std, x_mean
 
-# # Call the z_score function
-x_train_standardized, x_std, x_mean = z_score(x_train)
-
-# Print the results
-print("Standardized x_train:\n", x_train_standardized)
-print("Standard Deviations:\n", x_std)
-print("Means:\n", x_mean)
-print(x_train)
